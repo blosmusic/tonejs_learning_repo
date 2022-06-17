@@ -1,2 +1,2 @@
 # tonejs_learning_repo
- repo to leanr tone.js
+ repo to learn tone.js
