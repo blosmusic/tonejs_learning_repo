@@ -1,11 +1,9 @@
 const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 const now = Tone.now();
 
-
-
 const clock = new Tone.Clock((time) => {
   console.log(time);
-  synth.triggerAttackRelease("C3", "8n");
+  synth.triggerAttackRelease("a4", "16n");
 }, 1);
 
 
