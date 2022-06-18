@@ -8,7 +8,7 @@ const clock = new Tone.Clock((time) => {
 
 
 let playIO = () => {
-  console.log("play pressed");
+  console.log("button pressed");
 
   currentvalue = document.getElementById("onoff").value;
   if (currentvalue == "Off") {
