@@ -2,12 +2,13 @@ const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 const now = Tone.now();
 const time = 1;
 
-//
+//tells the browser to allow audio
 document.querySelector("button")?.addEventListener("click", async () => {
   await Tone.start();
   console.log("audio is ready");
 });
 
+//create a timer that plays a note every 1s when button is pressed
 const clock = new Tone.Clock((time) => {
   console.log(time);
   synth.triggerAttackRelease("f3", "16n");
@@ -26,12 +27,15 @@ let playIO = () => {
   }
 }
 
+//create a loop with two notes and set bpm
+Tone.Transport.bpm.value = 80;
+
 const note1 = new Tone.Loop(time => {
-  synth.triggerAttackRelease("e3", "8n", time);
-}, "4n").start(0);
+  synth.triggerAttackRelease("e2", "8n", time);
+}, "2n").start(0);
 const note2 = new Tone.Loop((time) => {
-  synth.triggerAttackRelease("a3", "8n", time);
-}, "4n").start("8n");
+  synth.triggerAttackRelease("a2", "8n", time);
+}, "2n").start("4n");
 
 let loopIO = () => {
   console.log("loop pressed");
