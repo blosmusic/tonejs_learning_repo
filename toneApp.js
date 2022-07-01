@@ -8,7 +8,7 @@ document.querySelector("button")?.addEventListener("click", async () => {
   console.log("audio is ready");
 });
 
-//create a timer that plays a note every 1s when button is pressed
+// create a timer that plays a note every 1s when button is pressed
 const clock = new Tone.Clock((time) => {
   console.log(time);
   synth.triggerAttackRelease("f3", "16n");
@@ -30,25 +30,25 @@ let playIO = () => {
 //create a loop with two notes and set bpm
 Tone.Transport.bpm.value = 60;
 
-// const note1 = new Tone.Loop((time) => {
-//   synth.triggerAttackRelease("e2", "8n", time);
-// }, "2n").start(0);
-// const note2 = new Tone.Loop((time) => {
-//   synth.triggerAttackRelease("a2", "8n", time);
-// }, "2n").start("4n");
+const note1 = new Tone.Loop((time) => {
+  synth.triggerAttackRelease("C2", "8n", time);
+}, "2n").start(0);
+const note2 = new Tone.Loop((time) => {
+  synth.triggerAttackRelease("F2", "8n", time);
+}, "2n").start("4n");
 
-// const loopIO = () => {
-//   console.log("loop pressed");
+const loopIO = () => {
+  console.log("loop pressed");
 
-//   currentvalue = document.getElementById("loopButton").value;
-//   if (currentvalue == "Off") {
-//     document.getElementById("loopButton").value = "On";
-//     Tone.Transport.start();
-//   } else {
-//     document.getElementById("loopButton").value = "Off";
-//     Tone.Transport.stop();
-//   }
-// }
+  currentvalue = document.getElementById("loopButton").value;
+  if (currentvalue == "Off") {
+    document.getElementById("loopButton").value = "On";
+    Tone.Transport.start();
+  } else {
+    document.getElementById("loopButton").value = "Off";
+    Tone.Transport.stop();
+  }
+}
 
 //test sequence function
 const seq1 = new Tone.Sequence(
