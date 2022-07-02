@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.40/Tone.js"></script>
-    <script src="./app.js"></script>
-    <script src="./toneApp.js"></script>
     <title>Tone.js Practice</title>
 </head>
 
@@ -19,12 +17,13 @@
     <input class="onoffButton" type="button" value="Off" id="loopButton" onClick="loopIO()">
     <h2>SEQUENCE</h2>
     <!-- <input class="onoffButton" type="button" value="Off" id="seqButton" onClick="seqIO()"> -->
-    <button id="startButton">start</button>
+    <button class="onoffButton" id="startButton">start</button>
     <p>
         Tempo:<br /> <input id="tempoSlider" type="range" min="50" max="200" value="100">
         <br />
         <span id="bpmDisplay"></span>
     </p>
 </body>
-
+<script src="./app.js"></script>
+    <!-- <script src="./toneApp.js"></script> -->
 </html>

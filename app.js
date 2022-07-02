@@ -9,11 +9,11 @@ tempoSlider.oninput = function () {
   Tone.Transport.bpm.value = tempoSlider.value;
 };
 
-let synth2;
+let synth;
 let loop = new Tone.Sequence(
   function (time, col) {
     console.log(col);
-    synth2.triggerAttackRelease("C2", "64n");
+    synth.triggerAttackRelease("C2", "64n");
   },
   [0, 1, 2, 3, 4, 5, 6, 7],
   "8n"
@@ -22,7 +22,7 @@ let loop = new Tone.Sequence(
 let loop2 = new Tone.Sequence(
   function (time, col) {
     console.log(col);
-    synth2.triggerAttackRelease("C3", "64n");
+    synth.triggerAttackRelease("F2", "64n");
   },
   [0, 1, 2, 3, 4, 5, 6, 7],
   "8n"
@@ -33,8 +33,8 @@ Tone.Transport.on("stop", function () {
 });
 Tone.Transport.bpm.value = tempoSlider.value;
 startButton.onclick = function () {
-  if (!synth2) {
-    synth2 = new Tone.Synth().toMaster();
+  if (!synth) {
+    synth = new Tone.Synth().toMaster();
     console.log("created synth");
   }
   if (Tone.Transport.state !== "started") {
