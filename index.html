@@ -17,13 +17,19 @@
     <input class="onoffButton" type="button" value="Off" id="loopButton" onClick="loopIO()">
     <h2>SEQUENCE</h2>
     <!-- <input class="onoffButton" type="button" value="Off" id="seqButton" onClick="seqIO()"> -->
-    <button class="onoffButton" id="startButton">start</button>
-    <p>
-        Tempo:<br /> <input id="tempoSlider" type="range" min="50" max="200" value="100">
-        <br />
-        <span id="bpmDisplay"></span>
-    </p>
+    <button class="onoffButton" id="startButton">START</button>
+    <div class="bpmContaner">
+        <h2>TEMPO:</h2>
+        <div class="bpmSlider">
+            <span id="bpmDisplay"></span>
+            <br />
+            <div class="tempoSliderContainer">
+                <input class="slider" id="tempoSlider" type="range" min="50" max="200" value="100">
+            </div>
+        </div>
+    </div>
 </body>
 <script src="./app.js"></script>
-    <!-- <script src="./toneApp.js"></script> -->
+<!-- <script src="./toneApp.js"></script> -->
+
 </html>

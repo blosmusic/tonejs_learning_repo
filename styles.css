@@ -5,6 +5,7 @@ body {
 }
 
 .onoffButton {
+    width: 150px;
     background-color: black;
     border: 3px;
     border-color: #00ff91;
@@ -15,3 +16,75 @@ body {
     display: inline-block;
     font-size: 16px;
 }
+
+.bpmContaner {
+    width: 300px;
+    height: 30vh;
+    background-color: black;
+    border: 3px;
+    border-color: #00ff91;
+    color: #00ff91;
+    text-align: center;
+}
+
+.bpmSlider {
+    width: 150px;
+    height: 28px;
+    background-color: black;
+    border: 3px;
+    border-color: #00ff91;
+    color: #00ff91;
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+}
+
+.tempoSlider {
+    width: 150px;
+    height: 90px;
+    background-color: black;
+    border: 3px;
+    border-color: #00ff91;
+    color: #00ff91;
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+}
+
+.tempoSliderContainer {
+    width: 150px;
+}
+
+.slider {
+    -web-appearance: none;
+    appearance: none;
+    background: #00ff91;
+    outline: black;
+    -webkit-transition: .2s;
+    opacity: .7;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: white;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: white;
+    opacity: 1;
+    cursor: pointer;
+}
+

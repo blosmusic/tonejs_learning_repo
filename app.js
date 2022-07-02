@@ -39,9 +39,9 @@ startButton.onclick = function () {
   }
   if (Tone.Transport.state !== "started") {
     Tone.Transport.start();
-    startButton.innerText = "stop";
+    startButton.innerText = "STOP";
   } else {
     Tone.Transport.stop();
-    startButton.innerText = "start";
+    startButton.innerText = "START";
   }
 };
