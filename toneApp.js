@@ -28,7 +28,7 @@ let playIO = () => {
 }
 
 //create a loop with two notes and set bpm
-Tone.Transport.bpm.value = 60;
+// Tone.Transport.bpm.value = 60;
 
 const note1 = new Tone.Loop((time) => {
   synth.triggerAttackRelease("C2", "8n", time);

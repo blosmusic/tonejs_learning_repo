@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,13 +11,20 @@
     <script src="./toneApp.js"></script>
     <title>Tone.js Practice</title>
 </head>
+
 <body>
     <h2>TIME</h2>
     <input class="onoffButton" type="button" value="Off" id="onoff" onClick="playIO()">
     <h2>LOOP</h2>
     <input class="onoffButton" type="button" value="Off" id="loopButton" onClick="loopIO()">
     <h2>SEQUENCE</h2>
-    <input class="onoffButton" type="button" value="Off" id="seqButton" onClick="seqIO()">
-    <!-- <input class="onoffButton" type="button" value="Off"> -->
+    <!-- <input class="onoffButton" type="button" value="Off" id="seqButton" onClick="seqIO()"> -->
+    <button id="startButton">start</button>
+    <p>
+        Tempo:<br /> <input id="tempoSlider" type="range" min="50" max="200" value="100">
+        <br />
+        <span id="bpmDisplay"></span>
+    </p>
 </body>
+
 </html>
