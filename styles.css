@@ -62,7 +62,7 @@ body {
     appearance: none;
     background: #00ff91;
     outline: black;
-    -webkit-transition: .2s;
+    transition: .2s;
     opacity: .7;
 }
 
