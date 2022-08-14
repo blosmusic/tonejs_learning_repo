@@ -11,20 +11,22 @@
 </head>
 
 <body>
-    <h2>TIME</h2>
+    <!-- <h2>TIME</h2>
     <input class="onoffButton" type="button" value="Off" id="onoff" onClick="playIO()">
     <h2>LOOP</h2>
-    <input class="onoffButton" type="button" value="Off" id="loopButton" onClick="loopIO()">
+    <input class="onoffButton" type="button" value="Off" id="loopButton" onClick="loopIO()"> -->
     <h2>SEQUENCE</h2>
     <!-- <input class="onoffButton" type="button" value="Off" id="seqButton" onClick="seqIO()"> -->
-    <button class="onoffButton" id="startButton">START</button>
-    <div class="bpmContaner">
+    <button class="onoffButton" id="onoff-button">START</button>
+    <div class="bpmContainer">
         <h2>TEMPO:</h2>
         <div class="bpmSlider">
-            <span id="bpmDisplay"></span>
+            <span id="bpm-display"></span>
             <br />
             <div class="tempoSliderContainer">
-                <input class="slider" id="tempoSlider" type="range" min="50" max="200" value="100">
+                <div class="adjust-tempo-btn decrease-tempo" id="decrease-tempo">-</div>
+                <input class="slider" id="tempo-slider" type="range" min="50" max="200" value="100">
+                <div class="adjust-tempo-btn increase-tempo" id="increase-tempo">+</div>
             </div>
         </div>
     </div>

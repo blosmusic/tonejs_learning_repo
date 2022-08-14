@@ -17,7 +17,7 @@ body {
     font-size: 16px;
 }
 
-.bpmContaner {
+.bpmContainer {
     width: 300px;
     height: 30vh;
     background-color: black;
@@ -55,6 +55,7 @@ body {
 
 .tempoSliderContainer {
     width: 150px;
+    display: flex;
 }
 
 .slider {
