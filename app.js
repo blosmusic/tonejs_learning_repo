@@ -36,7 +36,7 @@ let synth;
 let loop = new Tone.Sequence(
   function (time, col) {
     console.log(col);
-    synth.triggerAttackRelease("C2", "64n");
+    synth.triggerAttackRelease("A4", "64n");
   },
   beatsArray,
   "8n"
