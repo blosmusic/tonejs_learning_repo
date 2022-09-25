@@ -1,3 +1,5 @@
+//basic metronome functionality
+
 let startButton = document.getElementById("onoff-button");
 let tempoSlider = document.getElementById("tempo-slider");
 let bpmDisplay = document.getElementById("bpm-display");

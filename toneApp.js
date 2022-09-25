@@ -1,3 +1,5 @@
+//working with sound and tones
+
 const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 const now = Tone.now();
 const time = 1;
