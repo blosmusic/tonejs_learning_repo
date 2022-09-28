@@ -39,7 +39,7 @@ let loop = new Tone.Sequence(
     synth.triggerAttackRelease("A4", "64n");
   },
   beatsArray,
-  "8n"
+  "4n"
 ).start(0);
 
 // let loop2 = new Tone.Sequence(
