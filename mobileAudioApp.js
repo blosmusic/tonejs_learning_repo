@@ -20,16 +20,16 @@ osc3.connect(gainNode);
 
 gainNode.connect(audioCtx.destination);
 
-gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.0001);
+gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.001);
 
 osc1.start();
 osc2.start();
 osc3.start();
 
 oscButton.onmousedown = function () {
-    gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.0001);
+    gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.001);
 };
 
 oscButton.onmouseup = function () {
-    gainNode.gain.linearRampToValueAtTime(0.0, audioCtx.currentTime + 0.0001);
+    gainNode.gain.linearRampToValueAtTime(0.0, audioCtx.currentTime + 0.001);
 };
