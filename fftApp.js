@@ -18,6 +18,8 @@ const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 let source;
 let stream;
 
+let fft = new Tone.FFT(256);
+
 // const analyser = audioCtx.createAnalyser();
 // analyser.minDecibels = -90;
 // analyser.maxDecibels = -10;
