@@ -1,7 +1,7 @@
 //using audio files
-const play100Sound = document.getElementById('play-100-sound');
-const play250Sound = document.getElementById('play-250-sound');
-const play440Sound = document.getElementById('play-440-sound');
+const play100Sound = document.getElementById("play-100-sound");
+const play250Sound = document.getElementById("play-250-sound");
+const play440Sound = document.getElementById("play-440-sound");
 let audioFile1 = new Audio();
 let audioFile2 = new Audio();
 let audioFile3 = new Audio();
@@ -12,7 +12,6 @@ audioFile3.src = "./sounds/440Hz.mp3";
 play100Sound.addEventListener("click", function () {
   audioFile1.play();
 });
-
 
 //using oscillator nodes
 let oscButton = document.getElementById("osc-button");
@@ -45,9 +44,9 @@ osc1.start();
 // osc3.start();
 
 oscButton.onmousedown = function () {
-    gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.001);
+  gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.001);
 };
 
 oscButton.onmouseup = function () {
-    gainNode.gain.linearRampToValueAtTime(0.0, audioCtx.currentTime + 0.001);
+  gainNode.gain.linearRampToValueAtTime(0.0, audioCtx.currentTime + 0.001);
 };

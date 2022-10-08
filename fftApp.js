@@ -4,43 +4,53 @@
 //https://github.com/mdn/content/blob/main/files/en-us/web/api/web_audio_api/visualizations_with_web_audio_api/index.md?plain=1
 //https://github.com/mdn/voice-change-o-matic
 
-const heading = document.querySelector("h1");
-heading.textContent = "CLICK HERE TO START AUDIO";
-document.body.addEventListener("click", init);
+// const heading = document.querySelector("h2");
+// heading.textContent = "CLICK HERE TO START AUDIO";
+// document.body.addEventListener("click", init);
 
-function init() {
-  heading.textContent = "AUDIO STARTED";
-  document.body.removeEventListener("click", init);
-  console.log("audio started");
-}
-
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)(); //allows access to audio context and creation
+// function init() {
+//   heading.textContent = "AUDIO STARTED";
+//   document.body.removeEventListener("click", init);
+//   console.log("audio started");
+// }
+//allows access to audio context and creation including Safairi
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 const analyser = audioCtx.createAnalyser();
 
-// Set up canvas context for visualizer
-const canvas = document.querySelector(".visualizer");
-const canvasCtx = canvas.getContext("2d");
+let audio1 = new Audio(); //this might be the problem
+audio1.src = "./sounds/100Hz.mp3";
+const visualiser = document.getElementById("visualiser");
+const canvas = document.getElementById("canvas1");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+const ctx = canvas.getContext("2d"); //calls the canvas context
 
-let osc = audioCtx.createOscillator();
-osc.type = "triangle";
-osc.frequency.value = 73;
-osc.connect(audioCtx.destination);
-osc.start();
-osc.stop();
+let audioSource;
 
-// let fft = new Tone.FFT(256);
+visualiser.addEventListener("click", function () {
+  audio1.play();
+});
 
-analyser.fftSize = 256;
-analyser.minDecibels = -90;
-analyser.maxDecibels = -10;
-analyser.smoothingTimeConstant = 0.85;
+// let osc = audioCtx.createOscillator();
+// osc.type = "triangle";
+// osc.frequency.value = 73;
+// osc.connect(audioCtx.destination);
+// osc.connect(analyser);
+// osc.start();
+// osc.stop();
 
-const bufferLength = analyser.frequencyBinCount;
-console.log('buffer length is: ' + bufferLength);
-const dataArray = new Uint8Array(bufferLength);
+// // let fft = new Tone.FFT(256);
 
-osc.connect(analyser);
-analyser.connect(audioCtx.destination);
+// analyser.fftSize = 256;
+// analyser.minDecibels = -90;
+// analyser.maxDecibels = -10;
+// analyser.smoothingTimeConstant = 0.85;
+// analyser.connect(audioCtx.destination);
+// console.log(analyser);
+
+// const bufferLength = analyser.frequencyBinCount;
+// console.log('buffer length is: ' + bufferLength);
+// const dataArray = new Uint8Array(bufferLength);
 
 // let freqDomain = new Float32Array(analyser.frequencyBinCount);
 // analyser.getFloatFrequencyData(freqDomain);

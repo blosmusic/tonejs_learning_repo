@@ -12,29 +12,19 @@
 
 <body>
     <div class="test-area">
-        <h1>KEYS</h1>
+        <h2>KEYS</h2>
         <button id="osc-button" value="261.6">C</button>
         <button id="osc-button" value="311.1">Eb</button>
         <button id="osc-button" value="349.2">F</button>
         <button id="osc-button" value="392">G</button>
         <button id="osc-button" value="466">Bb</button>
         <button id="osc-button" value="523.2">C</button>
-        <h2>SOUNDS & FREQUENCIES</h2>
-        <canvas class="visualizer" width="640" height="100"></canvas>
-        <h2>MOBILE FUNCTIONS</h2>
+    </div>
+    <div class="test-area">
+        <h2>MOBILE TONES</h2>
         <button class="onoffButton" id="play-100-sound">100Hz</button>
         <button class="onoffButton" id="play-250-sound">250Hz</button>
         <button class="onoffButton" id="play-440-sound">440Hz</button>
-        <br>
-        <audio controls loop>
-            <source src="./sounds/100HZ.mp3" type="audio/mpeg">
-        </audio>
-        <audio controls loop>
-            <source src="./sounds/250HZ.mp3" type="audio/mpeg">
-        </audio>
-        <audio controls loop>
-            <source src="./sounds/440HZ.mp3" type="audio/mpeg">
-        </audio>
     </div>
 
     <div class="test-area">
@@ -58,7 +48,20 @@
             </div>
         </div>
     </div>
-
+    <div class="test-area visualiser" id="visualiser">
+            <canvas class="canvas1" id="class1"></canvas>
+            <h2>SOUND & FREQUENCY ANALYSIS</h2>
+            <audio id="audio1" controls loop>
+                <source src="./sounds/100HZ.mp3" type="audio/mpeg">
+            </audio>
+            <!-- <audio controls loop>
+                <source src="./sounds/250HZ.mp3" type="audio/mpeg">
+            </audio>
+            <audio controls loop>
+                <source src="./sounds/440HZ.mp3" type="audio/mpeg">
+            </audio> -->
+        </div>
+    </div>
 </body>
 <script src="./app.js"></script>
 <!-- <script src="./toneApp.js"></script> -->
