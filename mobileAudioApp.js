@@ -1,4 +1,20 @@
-const playMobileSound = document.querySelector(".playMobileSound");
+//using audio files
+const play100Sound = document.getElementById('play-100-sound');
+const play250Sound = document.getElementById('play-250-sound');
+const play440Sound = document.getElementById('play-440-sound');
+let audioFile1 = new Audio();
+let audioFile2 = new Audio();
+let audioFile3 = new Audio();
+audioFile1.src = "./sounds/100Hz.mp3";
+audioFile2.src = "./sounds/250Hz.mp3";
+audioFile3.src = "./sounds/440Hz.mp3";
+
+play100Sound.addEventListener("click", function () {
+  audioFile1.play();
+});
+
+
+//using oscillator nodes
 let oscButton = document.getElementById("osc-button");
 let pitch = document.querySelector("value");
 
