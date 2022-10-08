@@ -14,65 +14,75 @@ function init() {
   console.log("audio started");
 }
 
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-let source;
-let stream;
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)(); //allows access to audio context and creation
+const analyser = audioCtx.createAnalyser();
 
-let fft = new Tone.FFT(256);
+// Set up canvas context for visualizer
+const canvas = document.querySelector(".visualizer");
+const canvasCtx = canvas.getContext("2d");
 
-// const analyser = audioCtx.createAnalyser();
-// analyser.minDecibels = -90;
-// analyser.maxDecibels = -10;
-// analyser.smoothingTimeConstant = 0.85;
+let osc = audioCtx.createOscillator();
+osc.type = "triangle";
+osc.frequency.value = 73;
+osc.connect(audioCtx.destination);
+osc.start();
+osc.stop();
 
-// if (navigator.mediaDevices.getUserMedia) {
-//   console.log("getUserMedia supported.");
-//   const constraints = { audio: true };
-//   navigator.mediaDevices
-//     .getUserMedia(constraints)
-//     .then(function (stream) {
-//       source = audioCtx.createMediaStreamSource(stream);
+// let fft = new Tone.FFT(256);
 
-//       visualize();
-//     })
-//     .catch(function (err) {
-//       console.log("The following gUM error occured: " + err);
-//     });
-// } else {
-//   console.log("getUserMedia not supported on your browser!");
-// }
+analyser.fftSize = 256;
+analyser.minDecibels = -90;
+analyser.maxDecibels = -10;
+analyser.smoothingTimeConstant = 0.85;
 
-// function visualize() {
-//   WIDTH = canvas.width;
-//   HEIGHT = canvas.height;
+const bufferLength = analyser.frequencyBinCount;
+console.log('buffer length is: ' + bufferLength);
+const dataArray = new Uint8Array(bufferLength);
 
-//   analyser.fftSize = 256;
-//   const bufferLength = analyser.frequencyBinCount;
-//   console.log(bufferLength);
+osc.connect(analyser);
+analyser.connect(audioCtx.destination);
 
-//   const dataArray = new Uint8Array(bufferLength);
+// let freqDomain = new Float32Array(analyser.frequencyBinCount);
+// analyser.getFloatFrequencyData(freqDomain);
 
-//   canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
-
-//   function draw() {
-//     drawVisual = requestAnimationFrame(draw);
-
-//     analyser.getByteFrequencyData(dataArray);
-
-//     canvasCtx.fillStyle = "rgb(0, 0, 0)";
-//     canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
-
-//     const barWidth = (WIDTH / bufferLength) * 2.5;
-//     let barHeight;
-//     let x = 0;
-
-//     for (let i = 0; i < bufferLength; i++) {
-//       barHeight = dataArray[i] / 2;
-
-//       canvasCtx.fillStyle = `rgb(${barHeight + 100}, 50, 50)`;
-//       canvasCtx.fillRect(x, HEIGHT - barHeight / 2, barWidth, barHeight);
-
-//       x += barWidth + 1;
-//     }
+// function getFrequencyValue(freq) {
+//   let nyquist = audioCtx.sampleRate / 2;
+//   let index = Math.round((freq / nyquist) * freqDomain.length);
+//   return freqDomain[index];
 //   }
+
+//   getFrequencyValue(osc);
+
+// function draw() {
+//   drawVisual = requestAnimationFrame(draw);
+
+//   analyser.getByteTimeDomainData(dataArray);
+
+//   canvasCtx.fillStyle = "rgb(200, 200, 200)";
+//   canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
+
+//   canvasCtx.lineWidth = 2;
+//   canvasCtx.strokeStyle = "rgb(0, 0, 0)";
+
+//   canvasCtx.beginPath();
+
+//   const sliceWidth = (WIDTH * 1.0) / bufferLength;
+//   let x = 0;
+
+//   for (let i = 0; i < bufferLength; i++) {
+//     const v = dataArray[i] / 128.0;
+//     const y = (v * HEIGHT) / 2;
+
+//     if (i === 0) {
+//       canvasCtx.moveTo(x, y);
+//     } else {
+//       canvasCtx.lineTo(x, y);
+//     }
+
+//     x += sliceWidth;
+//   }
+
+//   canvasCtx.lineTo(canvas.width, canvas.height / 2);
+//   canvasCtx.stroke();
 // }
+// draw();
