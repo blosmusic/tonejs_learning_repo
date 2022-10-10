@@ -28,12 +28,13 @@
     </div>
 
     <div class="test-area">
-        <!-- <h2>TIME</h2>
-    <input class="onoffButton" type="button" value="Off" id="onoff" onClick="playIO()">
-    <h2>LOOP</h2>
-    <input class="onoffButton" type="button" value="Off" id="loopButton" onClick="loopIO()"> -->
+        <h2>TIME</h2>
+        <input class="onoffButton" type="button" value="Off" id="onoff" onClick="playIO()">
+        <h2>LOOP</h2>
+        <input class="onoffButton" type="button" value="Off" id="loopButton" onClick="loopIO()">
         <h2>SEQUENCE</h2>
-        <!-- <input class="onoffButton" type="button" value="Off" id="seqButton" onClick="seqIO()"> -->
+        <input class="onoffButton" type="button" value="Off" id="seqButton" onClick="seqIO()">
+        <h2>SEQ METRONOME</h2>
         <button class="onoffButton" id="onoff-button">START</button>
         <div class="bpmContainer">
             <h2>TEMPO:</h2>
@@ -48,19 +49,22 @@
             </div>
         </div>
     </div>
-    <div class="test-area visualiser" id="visualiser">
-            <canvas class="canvas1" id="class1"></canvas>
-            <h2>SOUND & FREQUENCY ANALYSIS</h2>
-            <audio id="audio1" controls loop>
-                <source src="./sounds/100HZ.mp3" type="audio/mpeg">
-            </audio>
-            <!-- <audio controls loop>
-                <source src="./sounds/250HZ.mp3" type="audio/mpeg">
-            </audio>
-            <audio controls loop>
-                <source src="./sounds/440HZ.mp3" type="audio/mpeg">
-            </audio> -->
-        </div>
+    <div class="test-area" id="visualiser">
+        <canvas id="canvas1"></canvas>
+        <h2>SOUND & FREQUENCY ANALYSIS</h2>
+        <h3>100Hz</h3>
+        <audio controls loop>
+            <source src="./sounds/100HZ.mp3" type="audio/mpeg">
+        </audio>
+        <h3>250Hz</h3>
+        <audio controls loop>
+            <source src="./sounds/250HZ.mp3" type="audio/mpeg">
+        </audio>
+        <h3>440Hz</h3>
+        <audio controls loop>
+            <source src="./sounds/440HZ.mp3" type="audio/mpeg">
+        </audio>
+    </div>
     </div>
 </body>
 <script src="./app.js"></script>

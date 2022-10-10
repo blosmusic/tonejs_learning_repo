@@ -32,15 +32,18 @@ body {
 
 #visualiser {
     position: absolute;
+    background: #363636;
     width: 100%;
     height: 100%;
-    background-color: #262626;
 }
 
 #canvas1 {
     position: absolute;
+    top: 500;
+    left: 0;
     width: 100%;
     height: 100%;
+    filter: blur(0.5px) contrast(1.5)
 }
 
 #audio1 {

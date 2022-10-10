@@ -57,7 +57,7 @@ Tone.Transport.on("stop", function () {
 Tone.Transport.bpm.value = tempoSlider.value;
 startButton.onclick = function () {
   if (!synth) {
-    synth = new Tone.Synth().toMaster();
+    synth = new Tone.Synth().toDestination();
     console.log("created synth");
   }
   if (Tone.Transport.state !== "started") {

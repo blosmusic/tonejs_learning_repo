@@ -1,3 +1,13 @@
+const heading = document.querySelector("h2");
+heading.textContent = "CLICK HERE TO START AUDIO";
+document.body.addEventListener("click", init);
+
+function init() {
+  heading.textContent = "AUDIO STARTED";
+  document.body.removeEventListener("click", init);
+  console.log("audio started");
+}
+
 //using audio files
 const play100Sound = document.getElementById("play-100-sound");
 const play250Sound = document.getElementById("play-250-sound");
@@ -9,8 +19,19 @@ audioFile1.src = "./sounds/100Hz.mp3";
 audioFile2.src = "./sounds/250Hz.mp3";
 audioFile3.src = "./sounds/440Hz.mp3";
 
+//allows access to audio context and creation including Safairi
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
 play100Sound.addEventListener("click", function () {
   audioFile1.play();
+});
+
+play250Sound.addEventListener("click", function () {
+  audioFile2.play();
+});
+
+play440Sound.addEventListener("click", function () {
+  audioFile3.play();
 });
 
 //using oscillator nodes
