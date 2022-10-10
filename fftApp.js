@@ -17,7 +17,7 @@ visualiser.addEventListener("click", function () {
   //input data
   const osc = new Tone.Oscillator("C4").start();
   //process data
-  analyser = new Tone.Analyser("fft", 32);
+  analyser = new Tone.Analyser("fft", 512);
   // audioSource.connect(analyser);
   // audioSource.toDestination();
   osc.connect(analyser).toDestination();
