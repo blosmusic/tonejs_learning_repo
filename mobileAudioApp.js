@@ -1,3 +1,6 @@
+//allows access to audio context and creation including Safairi
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
 const heading = document.querySelector("h2");
 heading.textContent = "CLICK HERE TO START AUDIO";
 document.body.addEventListener("click", init);
@@ -18,9 +21,6 @@ let audioFile3 = new Audio();
 audioFile1.src = "./sounds/100Hz.mp3";
 audioFile2.src = "./sounds/250Hz.mp3";
 audioFile3.src = "./sounds/440Hz.mp3";
-
-//allows access to audio context and creation including Safairi
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 play100Sound.addEventListener("click", function () {
   audioFile1.play();
