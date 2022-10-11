@@ -62,7 +62,8 @@ body {
     text-align: center;
 }
 
-.bpmSlider {
+.bpmSlider,
+.freqSlider {
     width: 150px;
     height: 28px;
     background-color: black;

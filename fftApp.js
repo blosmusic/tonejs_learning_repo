@@ -12,33 +12,65 @@ canvas.height = window.innerHeight;
 const ctx = canvas.getContext("2d"); //calls the canvas context
 let audioSource;
 let analyser;
+let freqSlider = document.getElementById("freq-slider");
+let freqValue = document.getElementById("freq-value");
 
-visualiser.addEventListener("click", function () {
-  //input data
-  const osc = new Tone.Oscillator("C4").start();
-  //process data
-  analyser = new Tone.Analyser("fft", 512);
-  // audioSource.connect(analyser);
-  // audioSource.toDestination();
-  osc.connect(analyser).toDestination();
-  console.log(analyser.getValue());
+freqValue.textContent = freqSlider.value;
 
-  // const bufferLength = analyser.frequencyBinCount;
-  // const dataArray = new Uint8Array(bufferLength);
+freqSlider.oninput = function () {
+  freqValue.textContent = this.value;
+};
 
-  // const barWidth = (canvas.width / bufferLength) * 2.5;
-  // let barHeight;
-  // let x;
-  // //output data to canvas
-  // function animate() {
-  //   x = 0;
-  //   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  //   analyser.getByteFrequencyData(dataArray);
-  //   drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray);
-  //   requestAnimationFrame(animate);
-  // }
-  // animate();
-});
+//todo: change the frequency of the oscillator
+let freq = freqSlider.value;
+console.log("Slider value: ", freq);
+
+//todo: read the frequency slider value and change the oscillator frequency
+const osc = new Tone.Oscillator(freq).toDestination().start();
+console.log(
+  "Frequency of Note played is: " +
+    osc.toFrequency(osc.frequency.value).toFixed(2)
+);
+
+//todo: get the frequency value after the slider is changed
+
+// visualiser.addEventListener("click", function () {
+//   //input data
+//   const osc = new Tone.Oscillator("a3").toDestination().start();
+//   const fft = new Tone.FFT(32);
+
+//   osc.connect(fft);
+
+//   console.log(fft.getValue());
+//   //process data
+//   // analyser = new Tone.Analyser("fft", 32);
+//   // audioSource.connect(analyser);
+//   // audioSource.toDestination();
+//   // osc.connect(analyser).toDestination();
+
+//   // console.log(analyser.getValue());
+//   // get frequency data of the audio source - osc
+//   console.log(
+//     "Frequency of Note played is: " +
+//       osc.toFrequency(osc.frequency.value).toFixed(2)
+//   );
+
+//   // const bufferLength = analyser.frequencyBinCount;
+//   // const dataArray = new Uint8Array(bufferLength);
+
+//   // const barWidth = (canvas.width / bufferLength) * 2.5;
+//   // let barHeight;
+//   // let x;
+//   // //output data to canvas
+//   // function animate() {
+//   //   x = 0;
+//   //   ctx.clearRect(0, 0, canvas.width, canvas.height);
+//   //   analyser.getByteFrequencyData(dataArray);
+//   //   drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray);
+//   //   requestAnimationFrame(animate);
+//   // }
+//   // animate();
+// });
 
 function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray) {
   for (let i = 0; i < bufferLength; i++) {

@@ -66,6 +66,7 @@ osc1.start();
 
 oscButton.onmousedown = function () {
   gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.001);
+  // console.log(audioCtx.toFrequency(audioCtx.frequency.value));
 };
 
 oscButton.onmouseup = function () {

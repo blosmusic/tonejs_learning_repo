@@ -52,6 +52,14 @@
     <div class="test-area" id="visualiser">
         <canvas id="canvas1"></canvas>
         <h2>SOUND & FREQUENCY ANALYSIS</h2>
+        <div class="freqSlider">
+            <span id="freq-value"></span>
+            <br />
+            <div class="freqSliderContainer">
+                <input class="slider" id="freq-slider" type="range" min="50" max="500" value="220">
+            </div>
+        </div>
+        
         <h3>100Hz</h3>
         <audio controls loop>
             <source src="./sounds/100HZ.mp3" type="audio/mpeg">
