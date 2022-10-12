@@ -15,6 +15,31 @@ let analyser;
 let freqSlider = document.getElementById("freq-slider");
 let freqValue = document.getElementById("freq-value");
 
+// get microphone input
+const meter = new Tone.Meter();
+const mic = new Tone.UserMedia().connect(meter);
+mic
+  .open()
+  .then(() => {
+    // promise resolves when input is available
+    console.log("mic open");
+    // print the incoming mic levels in decibels
+    setInterval(
+      () =>
+        console.log(
+          "The Decibel level is: " + meter.getValue().toFixed(2) + " dB"
+          + "\n" + "The Frequency value is: " + meter.toFrequency(meter).toFixed(2) + " Hz"
+          // + "\n" + "The Frequency value is: " + Tone.Frequency().toFrequency(meter).toFixed(2) + " Hz"
+        ),
+      1000
+    );
+    // console.log("The Frequency value is: ", meter.toFrequency());
+  })
+  .catch((e) => {
+    // promise is rejected when the user doesn't have or allow mic access
+    console.log("mic not open");
+  });
+
 freqValue.textContent = freqSlider.value;
 
 freqSlider.oninput = function () {
