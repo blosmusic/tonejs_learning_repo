@@ -18,27 +18,38 @@ let freqValue = document.getElementById("freq-value");
 // get microphone input
 const meter = new Tone.Meter();
 const mic = new Tone.UserMedia().connect(meter);
+let frequencyValueRead = null;
+
 mic
   .open()
   .then(() => {
     // promise resolves when input is available
     console.log("mic open");
-    // print the incoming mic levels in decibels
-    setInterval(
-      () =>
-        console.log(
-          "The Decibel level is: " + meter.getValue().toFixed(2) + " dB"
-          + "\n" + "The Frequency value is: " + meter.toFrequency(meter).toFixed(2) + " Hz"
-          // + "\n" + "The Frequency value is: " + Tone.Frequency().toFrequency(meter).toFixed(2) + " Hz"
-        ),
-      1000
-    );
-    // console.log("The Frequency value is: ", meter.toFrequency());
+    // what to do when the mic is open
+    processAudioToFrequency();
   })
   .catch((e) => {
     // promise is rejected when the user doesn't have or allow mic access
     console.log("mic not open");
   });
+
+function processAudioToFrequency() {
+  console.log("processAudioToFrequency called");
+
+  // print the incoming mic levels in decibels
+  setInterval(() => {
+    console.log("The Decibel level is:", meter.getValue().toFixed(2), "dB");
+
+    //TODO convert decibel level to integer value
+    frequencyValueRead = meter.getValue();
+    console.log("The frequencyValueRead value is:", frequencyValueRead);
+
+    const hertz = Tone.Frequency(frequencyValueRead, "hz")
+      .toFrequency()
+      .toFixed(2);
+    console.log("The Frequency is:", hertz, "Hz");
+  }, 1000);
+}
 
 freqValue.textContent = freqSlider.value;
 
