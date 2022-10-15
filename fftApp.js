@@ -12,8 +12,13 @@ canvas.height = window.innerHeight;
 const ctx = canvas.getContext("2d"); //calls the canvas context
 let audioSource;
 let analyser;
+let fft;
+
 let freqSlider = document.getElementById("freq-slider");
 let freqValue = document.getElementById("freq-value");
+let frequencyOfOscillator = new Tone.Oscillator(freqSlider.value, "sine")
+  .toDestination()
+  .start();
 
 // get microphone input
 const meter = new Tone.Meter();
@@ -26,71 +31,67 @@ mic
     // promise resolves when input is available
     console.log("mic open");
     // what to do when the mic is open
-    processAudioToFrequency();
+    updateOscillator();
+    setInterval(() => {
+      // processAudioToFrequency();
+      // processFFT();
+    }, 10000);
   })
   .catch((e) => {
     // promise is rejected when the user doesn't have or allow mic access
     console.log("mic not open");
   });
 
+freqSlider.oninput = function () {
+  freqValue.innerHTML = this.value;
+  console.log("Slider value: ", freqValue.innerHTML, "Hz");
+  updateOscillator();
+};
+
+let updateOscillator = function () {
+  freqValue.innerHTML = freqSlider.value;
+  console.log("Oscillator value: ", freqSlider.value, "Hz");
+  frequencyOfOscillator.frequency.value = freqSlider.value;
+};
+
+// convert audio to frequency
 function processAudioToFrequency() {
   console.log("processAudioToFrequency called");
 
   // print the incoming mic levels in decibels
-  setInterval(() => {
-    console.log("The Decibel level is:", meter.getValue().toFixed(2), "dB");
+  console.log("The Decibel level is:", meter.getValue().toFixed(2), "dB");
 
-    //TODO convert decibel level to integer value
-    frequencyValueRead = meter.getValue();
-    console.log("The frequencyValueRead value is:", frequencyValueRead);
+  //TODO convert decibel level to integer value
+  frequencyValueRead = Math.max(-100, meter.getValue());
+  console.log("The frequencyValueRead value is:", frequencyValueRead);
 
-    const hertz = Tone.Frequency(frequencyValueRead, "hz")
-      .toFrequency()
-      .toFixed(2);
-    console.log("The Frequency is:", hertz, "Hz");
-  }, 1000);
+  const hertz = Tone.Frequency(frequencyValueRead, "hz")
+    .toFrequency()
+    .toFixed(2);
+  console.log("The Frequency is:", hertz, "Hz");
 }
 
-freqValue.textContent = freqSlider.value;
+// create FFT processor
+function processFFT() {
+  console.log("processFFT called");
 
-freqSlider.oninput = function () {
-  freqValue.textContent = this.value;
-};
-
-//todo: change the frequency of the oscillator
-let freq = freqSlider.value;
-console.log("Slider value: ", freq);
-
-//todo: read the frequency slider value and change the oscillator frequency
-const osc = new Tone.Oscillator(freq).toDestination().start();
-console.log(
-  "Frequency of Note played is: " +
+  //process FFT method
+  fft = new Tone.FFT(32);
+  // osc.connect(fft).toDestination().start();
+  //process analyser method
+  analyser = new Tone.Analyser("fft", 32);
+  // osc.connect(analyser).toDestination();
+  // start ocs amd read data
+  meter.chain(fft, analyser);
+  console.log("FFT values:", fft.getValue());
+  console.log("Analyser values:", analyser.getValue());
+  console.log(
+    "Frequency of Note played is:",
     osc.toFrequency(osc.frequency.value).toFixed(2)
-);
-
-//todo: get the frequency value after the slider is changed
+  );
+}
 
 // visualiser.addEventListener("click", function () {
-//   //input data
-//   const osc = new Tone.Oscillator("a3").toDestination().start();
-//   const fft = new Tone.FFT(32);
-
-//   osc.connect(fft);
-
-//   console.log(fft.getValue());
-//   //process data
-//   // analyser = new Tone.Analyser("fft", 32);
-//   // audioSource.connect(analyser);
-//   // audioSource.toDestination();
-//   // osc.connect(analyser).toDestination();
-
-//   // console.log(analyser.getValue());
-//   // get frequency data of the audio source - osc
-//   console.log(
-//     "Frequency of Note played is: " +
-//       osc.toFrequency(osc.frequency.value).toFixed(2)
-//   );
-
 //   // const bufferLength = analyser.frequencyBinCount;
 //   // const dataArray = new Uint8Array(bufferLength);
 
@@ -108,16 +109,16 @@ console.log(
 //   // animate();
 // });
 
-function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray) {
-  for (let i = 0; i < bufferLength; i++) {
-    barHeight = dataArray[i];
-    const r = barHeight + 25 * (i / bufferLength);
-    const g = 250 * (i / bufferLength);
-    const b = 50;
-    ctx.fillStyle = "white";
-    ctx.fillRect(x, canvas.height - barHeight - 15, barWidth, 10);
-    ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
-    ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-    x += barWidth + 1;
-  }
-}
+// function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray) {
+//   for (let i = 0; i < bufferLength; i++) {
+//     barHeight = dataArray[i];
+//     const r = barHeight + 25 * (i / bufferLength);
+//     const g = 250 * (i / bufferLength);
+//     const b = 50;
+//     ctx.fillStyle = "white";
+//     ctx.fillRect(x, canvas.height - barHeight - 15, barWidth, 10);
+//     ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+//     ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+//     x += barWidth + 1;
+//   }
+// }
