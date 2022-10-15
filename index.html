@@ -58,9 +58,19 @@
             <div class="freqSliderContainer">
                 <input class="slider" id="freq-slider" type="range" min="30" max="2500" value="160">
             </div>
+            <div id="wavetype">
+                <input type="radio" id="sine" name="wave" value="sine" checked>
+                <label for="sine">Sine</label>
+                <input type="radio" id="square" name="wave" value="square">
+                <label for="square">Square</label>
+                <input type="radio" id="sawtooth" name="wave" value="sawtooth">
+                <label for="sawtooth">Sawtooth</label>
+                <input type="radio" id="triangle" name="wave" value="triangle">
+                <label for="triangle">Triangle</label>
+            </div>
         </div>
         
-        <h3>100Hz</h3>
+        <!-- <h3>100Hz</h3>
         <audio controls loop>
             <source src="./sounds/100HZ.mp3" type="audio/mpeg">
         </audio>
@@ -71,8 +81,7 @@
         <h3>440Hz</h3>
         <audio controls loop>
             <source src="./sounds/440HZ.mp3" type="audio/mpeg">
-        </audio>
-    </div>
+        </audio> -->
     </div>
 </body>
 <script src="./app.js"></script>
