@@ -5,14 +5,18 @@
 //https://github.com/mdn/voice-change-o-matic
 
 //set up global variables
+// get microphone input
+const meter = new Tone.Meter();
+const mic = new Tone.UserMedia().connect(meter);
+let frequencyValueRead = null;
+
+// set up frequency and canvas
 const visualiser = document.getElementById("visualiser");
 const canvas = document.getElementById("canvas1");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 const ctx = canvas.getContext("2d"); //calls the canvas context
 let audioSource;
-let analyser;
-let fft;
 
 let freqSlider = document.getElementById("freq-slider");
 let freqValue = document.getElementById("freq-value");
@@ -20,14 +24,15 @@ let wavetypeChecked = document.querySelectorAll('input[name="wave"]');
 let wavetypeValue;
 let waveType = "sine";
 
+let toneFFT = new Tone.FFT(32);
+let microphoneAnalyser = new Tone.Analyser("fft", 32);
+
 let frequencyOfOscillator = new Tone.Oscillator(freqSlider.value, waveType)
   .toDestination()
   .start();
 
-// get microphone input
-const meter = new Tone.Meter();
-const mic = new Tone.UserMedia().connect(meter);
-let frequencyValueRead = null;
+frequencyOfOscillator.connect(toneFFT);
+meter.connect(microphoneAnalyser);
 
 mic
   .open()
@@ -35,11 +40,11 @@ mic
     // promise resolves when input is available
     console.log("mic open");
     // what to do when the mic is open
-    updateOscillator();
     setInterval(() => {
       // processAudioToFrequency();
-      // processFFT();
-    }, 10000);
+      processFFT();
+    }, 1000);
+    updateOscillator();
   })
   .catch((e) => {
     // promise is rejected when the user doesn't have or allow mic access
@@ -91,25 +96,12 @@ let updateWavetype = function () {
 //   console.log("The Frequency is:", hertz, "Hz");
 // }
 
-// // create FFT processor
-// function processFFT() {
-//   console.log("processFFT called");
-
-//   //process FFT method
-//   fft = new Tone.FFT(32);
-//   // osc.connect(fft).toDestination().start();
-//   //process analyser method
-//   analyser = new Tone.Analyser("fft", 32);
-//   // osc.connect(analyser).toDestination();
-//   // start ocs amd read data
-//   meter.chain(fft, analyser);
-//   console.log("FFT values:", fft.getValue());
-//   console.log("Analyser values:", analyser.getValue());
-//   console.log(
-//     "Frequency of Note played is:",
-//     osc.toFrequency(osc.frequency.value).toFixed(2)
-//   );
-// }
+// create FFT processor
+function processFFT() {
+  console.log("processFFT called");
+  console.log("FFT values:", toneFFT.getValue());
+  console.log("Analyser values:", microphoneAnalyser.getValue());
+}
 
 // visualiser.addEventListener("click", function () {
 //   // const bufferLength = analyser.frequencyBinCount;

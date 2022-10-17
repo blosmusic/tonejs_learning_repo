@@ -89,9 +89,13 @@ body {
     font-size: 18px;
 }
 
-.tempoSliderContainer,
-.freqSliderContainer {
+.tempoSliderContainer {
     width: 150px;
+    display: flex;
+}
+
+.freqSliderContainer {
+    width: 250px;
     display: flex;
 }
 
