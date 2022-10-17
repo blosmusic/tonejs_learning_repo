@@ -16,7 +16,6 @@ let fft;
 
 let freqSlider = document.getElementById("freq-slider");
 let freqValue = document.getElementById("freq-value");
-// let wavetypeChecked = document.getElementsByName('wave');
 let wavetypeChecked = document.querySelectorAll('input[name="wave"]');
 let wavetypeValue;
 let waveType = "sine";
@@ -75,42 +74,42 @@ let updateWavetype = function () {
   frequencyOfOscillator.type = waveType;
 };
 
-// convert audio to frequency
-function processAudioToFrequency() {
-  console.log("processAudioToFrequency called");
+// // convert audio to frequency
+// function processAudioToFrequency() {
+//   console.log("processAudioToFrequency called");
 
-  // print the incoming mic levels in decibels
-  console.log("The Decibel level is:", meter.getValue().toFixed(2), "dB");
+//   // print the incoming mic levels in decibels
+//   console.log("The Decibel level is:", meter.getValue().toFixed(2), "dB");
 
-  //TODO convert decibel level to integer value
-  frequencyValueRead = Math.max(-100, meter.getValue());
-  console.log("The frequencyValueRead value is:", frequencyValueRead);
+//   //TODO convert decibel level to integer value
+//   frequencyValueRead = Math.max(-100, meter.getValue());
+//   console.log("The frequencyValueRead value is:", frequencyValueRead);
 
-  const hertz = Tone.Frequency(frequencyValueRead, "hz")
-    .toFrequency()
-    .toFixed(2);
-  console.log("The Frequency is:", hertz, "Hz");
-}
+//   const hertz = Tone.Frequency(frequencyValueRead, "hz")
+//     .toFrequency()
+//     .toFixed(2);
+//   console.log("The Frequency is:", hertz, "Hz");
+// }
 
-// create FFT processor
-function processFFT() {
-  console.log("processFFT called");
+// // create FFT processor
+// function processFFT() {
+//   console.log("processFFT called");
 
-  //process FFT method
-  fft = new Tone.FFT(32);
-  // osc.connect(fft).toDestination().start();
-  //process analyser method
-  analyser = new Tone.Analyser("fft", 32);
-  // osc.connect(analyser).toDestination();
-  // start ocs amd read data
-  meter.chain(fft, analyser);
-  console.log("FFT values:", fft.getValue());
-  console.log("Analyser values:", analyser.getValue());
-  console.log(
-    "Frequency of Note played is:",
-    osc.toFrequency(osc.frequency.value).toFixed(2)
-  );
-}
+//   //process FFT method
+//   fft = new Tone.FFT(32);
+//   // osc.connect(fft).toDestination().start();
+//   //process analyser method
+//   analyser = new Tone.Analyser("fft", 32);
+//   // osc.connect(analyser).toDestination();
+//   // start ocs amd read data
+//   meter.chain(fft, analyser);
+//   console.log("FFT values:", fft.getValue());
+//   console.log("Analyser values:", analyser.getValue());
+//   console.log(
+//     "Frequency of Note played is:",
+//     osc.toFrequency(osc.frequency.value).toFixed(2)
+//   );
+// }
 
 // visualiser.addEventListener("click", function () {
 //   // const bufferLength = analyser.frequencyBinCount;
