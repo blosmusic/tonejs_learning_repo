@@ -121,9 +121,6 @@ body {
     color: black;
     background-color: #00ff91;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
 }
 
 label {
