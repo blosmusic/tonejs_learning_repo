@@ -16,14 +16,12 @@ let fft;
 
 let freqSlider = document.getElementById("freq-slider");
 let freqValue = document.getElementById("freq-value");
-let wavetypeValue = document.getElementById("wavetype-value");
-console.log("wavetypeValue:", wavetypeValue);
-let wavetypeChecked = document.getElementsByName('wave');
-console.log("wavetypeChecked:", wavetypeChecked);
-// let wavetypeChecked = document.querySelectorAll('input[name="wave"]:checked').value;
-// wavetypeChecked.checked = true;
+// let wavetypeChecked = document.getElementsByName('wave');
+let wavetypeChecked = document.querySelectorAll('input[name="wave"]');
+let wavetypeValue;
+let waveType = "sine";
 
-let frequencyOfOscillator = new Tone.Oscillator(freqSlider.value, "sine")
+let frequencyOfOscillator = new Tone.Oscillator(freqSlider.value, waveType)
   .toDestination()
   .start();
 
@@ -63,18 +61,18 @@ let updateOscillator = function () {
 };
 
 // get wavetype value
-// if (wavetypeChecked.checked) {
-//   wavetypeValue = wavetypeChecked.value;
-//   console.log("Wavetype value: ", wavetypeValue);
-// }
-// wavetypeChecked.onchange = function () {
-//   console.log("Wavetype changed to:", wavetypeChecked.value);
-//   updateWavetype();
-// }; 
+wavetypeChecked.forEach(function (wavetypeValue) {
+  wavetypeValue.oninput = function () {
+    waveType = wavetypeValue.value;
+    console.log("Wavetype: ", waveType);
+    console.log("Wavetype value: ", wavetypeValue.value);
+    updateWavetype();
+  };
+});
 
 let updateWavetype = function () {
-  wavetypeValue = wavetypeChecked.value;
-  console.log("Wavetype updated to:", wavetypeValue);
+  console.log("Wavetype updated to:", waveType);
+  frequencyOfOscillator.type = waveType;
 };
 
 // convert audio to frequency

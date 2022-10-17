@@ -95,6 +95,27 @@ body {
     display: flex;
 }
 
+.wavetype-container {
+    width: 100vu;
+    height: 100vu;
+    display: flex;
+    text-align: center;
+    border: 3px solid black;
+    padding: 10px;
+    color: black;
+    background-color: #00ff91;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+label {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px;
+}
+
 .slider {
     -web-appearance: none;
     appearance: none;
@@ -124,26 +145,4 @@ body {
     background: white;
     opacity: 1;
     cursor: pointer;
-}
-
-.wavetype-container {
-    display: grid;
-    width: 350px;
-    height: 25px;
-    place-items: center;
-    border: 3px solid black;
-    padding: 10px;
-    color: #00ff91;
-    background-color: #00ff91;
-}
-
-.wavetype {
-    width: 350px;
-    height: 25px;
-    border: 3px solid black;
-    margin-left: -4px;
-    margin-top: -4px;
-    display: flex;
-    background-color: #262626;
-    justify-content: space-between;
 }
