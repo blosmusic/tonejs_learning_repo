@@ -73,7 +73,7 @@ body {
     text-decoration: none;
     text-align: center;
     display: inline-block;
-    font-size: 18px;
+    font-size: 30px;
 }
 
 .tempoSlider {
@@ -102,6 +102,22 @@ body {
     text-align: center;
     border: 3px solid black;
     padding: 10px;
+    color: black;
+    background-color: #00ff91;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.freq-container {
+    width: 100vu;
+    height: 100vu;
+    display: flex;
+    text-align: center;
+    border: 3px solid black;
+    padding: 10px;
+    margin-top: 5px;
     color: black;
     background-color: #00ff91;
     flex-direction: column;
