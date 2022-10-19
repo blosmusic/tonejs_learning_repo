@@ -40,11 +40,12 @@ mic
     // promise resolves when input is available
     console.log("mic open");
     // what to do when the mic is open
-    setInterval(() => {
-      // processAudioToFrequency();
-      processFFT();
-    }, 1000);
     updateOscillator();
+    setInterval(() => {
+      processFFT();
+      // processAudioToFrequency();
+    }, 1000);
+    
   })
   .catch((e) => {
     // promise is rejected when the user doesn't have or allow mic access
@@ -99,38 +100,40 @@ let updateWavetype = function () {
 // create FFT processor
 function processFFT() {
   console.log("processFFT called");
-  console.log("FFT values:", toneFFT.getValue());
+  //returns an array of values between -1 and 1 representing the frequency spectrum of the oscillator
+  console.log("FFT values:", toneFFT.getValue()); 
+  //returns an array of values between -1 and 1 representing the frequency spectrum of the microphone
   console.log("Analyser values:", microphoneAnalyser.getValue());
 }
 
-// visualiser.addEventListener("click", function () {
-//   // const bufferLength = analyser.frequencyBinCount;
-//   // const dataArray = new Uint8Array(bufferLength);
+visualiser.addEventListener("click", function () {
+  const bufferLength = analyser.frequencyBinCount;
+  const dataArray = new Uint8Array(bufferLength);
 
-//   // const barWidth = (canvas.width / bufferLength) * 2.5;
-//   // let barHeight;
-//   // let x;
-//   // //output data to canvas
-//   // function animate() {
-//   //   x = 0;
-//   //   ctx.clearRect(0, 0, canvas.width, canvas.height);
-//   //   analyser.getByteFrequencyData(dataArray);
-//   //   drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray);
-//   //   requestAnimationFrame(animate);
-//   // }
-//   // animate();
-// });
+  const barWidth = (canvas.width / bufferLength) * 2.5;
+  let barHeight;
+  let x;
+  //output data to canvas
+  function animate() {
+    x = 0;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    analyser.getByteFrequencyData(dataArray);
+    drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray);
+    requestAnimationFrame(animate);
+  }
+  animate();
+});
 
-// function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray) {
-//   for (let i = 0; i < bufferLength; i++) {
-//     barHeight = dataArray[i];
-//     const r = barHeight + 25 * (i / bufferLength);
-//     const g = 250 * (i / bufferLength);
-//     const b = 50;
-//     ctx.fillStyle = "white";
-//     ctx.fillRect(x, canvas.height - barHeight - 15, barWidth, 10);
-//     ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
-//     ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-//     x += barWidth + 1;
-//   }
-// }
+function drawVisualiser(bufferLength, x, barWidth, barHeight, dataArray) {
+  for (let i = 0; i < bufferLength; i++) {
+    barHeight = dataArray[i];
+    const r = barHeight + 25 * (i / bufferLength);
+    const g = 250 * (i / bufferLength);
+    const b = 50;
+    ctx.fillStyle = "white";
+    ctx.fillRect(x, canvas.height - barHeight - 15, barWidth, 10);
+    ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+    ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+    x += barWidth + 1;
+  }
+}
