@@ -34,6 +34,26 @@ let frequencyOfOscillator = new Tone.Oscillator(freqSlider.value, waveType)
 frequencyOfOscillator.connect(toneFFT);
 meter.connect(microphoneAnalyser);
 
+//ml5 library for pitch detection
+const audioContext = new AudioContext();
+// const MicStream = MicStream
+const pitch = ml5.pitchDetection(
+  "./model/",
+  audioContext,
+  MicStream,
+  modelLoaded
+);
+
+// When the model is loaded
+function modelLoaded() {
+  console.log("Model Loaded!");
+}
+
+pitch.getPitch((err, frequency) => {
+  console.log(frequency);
+});
+
+// mic in use from tone.js
 mic
   .open()
   .then(() => {
