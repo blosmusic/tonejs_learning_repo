@@ -29,7 +29,7 @@ let microphoneAnalyser = new Tone.Analyser("fft", 32);
 
 let frequencyOfOscillator = new Tone.Oscillator(freqSlider.value, waveType)
   .toDestination()
-  .start();
+  .start().stop();;
 
 frequencyOfOscillator.connect(toneFFT);
 meter.connect(microphoneAnalyser);
